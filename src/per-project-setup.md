@@ -1,74 +1,6 @@
 # Per-Project Setup
 
 ::: info
-This page contains instructions for creating your own personal repository for a project in this
-course, cloning it, and getting it set up inside your dev container. You will need to complete
-these steps **once per project** in this course, after completing the
-[Student Environment](/student-environment) setup.
-:::
-
-## Setup Instructions
-
-### Create a Repository From the Template
-
-A template repository is a special kind of GitHub repository that lets you generate a brand new
-repository with the same starter files, folder structure, and history-free commit as the
-template, but under your own account. For each project in this course, course staff provide a
-template repository (e.g.: `project-1-starter`) containing the starter code, instructions, and
-configuration you'll need. Using the template feature ensures you get your own independent,
-private copy to work in, rather than modifying the shared template directly.
-
-::: warning
-Make sure you are signed in to [GitHub](https://github.com/) with your own personal account before
-starting these steps.
-:::
-
-::: danger
-When you get to the `Visibility` setting below, do **not** select `Public`! Making your repository
-public exposes your work to other students (and the internet), which is an academic integrity
-violation. If you accidentally create a public repository, see the
-[Common Issues](#common-issues) section below to fix it immediately.
-:::
-
-1. Navigate to the starter template repository for the project you are starting (e.g.:
-   `https://github.com/CSCI-442-Mines/PROJECT_NAME-starter`, where `PROJECT_NAME` is the name of
-   the project, such as `project-1`).
-2. Click the green `Use this template` button near the top right of the page, then select
-   `Create a new repository` from the dropdown menu.
-3. On the `Create a new repository` page, fill out the following fields:
-   - **Owner**: select your own personal GitHub account (**not** the `CSCI-442-Mines`
-     organization). You will not have permission to create repositories directly under the
-     organization.
-   - **Repository name**: name your repository `PROJECT_NAME-USERNAME`, where `PROJECT_NAME` is
-     the name of the project (e.g.: `project-1`) and `USERNAME` is your GitHub username (e.g.:
-     `ghost`). For example: `project-1-ghost`.
-   - **Visibility**: select `Private`.
-4. Leave the remaining options (such as `Include all branches`) at their default (unchecked)
-   values.
-5. Click the green `Create repository` button and wait for GitHub to finish generating your new
-   repository from the template.
-
-### Find Your Repository URL
-
-Once your repository has been created, you'll land on its main page. Click the green `Code`
-button, and copy either the HTTPS or SSH URL, depending on which authentication method you set up
-in the [Setup Git Inside the Dev Container](/dev-container-setup#setup-git-inside-the-dev-container)
-section.
-
-::: tip
-Keep this URL handy! You'll use it as `PROJECT_REPOSITORY_URL` when cloning your repository below.
-:::
-
-::: warning
-Failure to follow the remaining instructions on this page **exactly** as presented may result in
-corrupting your source code!
-:::
-
-### Clone Your Repository
-
-Now that you've created your repository from the template above, you need to clone it. This will
-create a copy of the starter code and instructions on your local machine. For best results clone
-the repository from inside the dev container using **one** of the following methods:
 This page contains instructions for cloning a project's repository and getting it set up inside
 your dev container. You will need to complete these steps **once per project** in this course,
 after completing the [Student Environment](/student-environment) setup and
@@ -92,7 +24,6 @@ container using **one** of the following methods:
    actual path to the directory). Note that you **must select the `[Dev Container]` entry**!
 2. Open VS Code, select `File > Open Folder...`, navigate to the directory where you extracted the
    course dev container, and click on `Reopen in Container` popup (the same way you did for
-   [setting up the course dev container](/dev-container-setup)).
    [setting up the course dev container](/student-environment#setup-the-course-dev-container)).
 
 Now that you've opened the dev container, open the top level of the workspace directory in the dev
@@ -118,7 +49,6 @@ Where `PROJECT_REPOSITORY_URL` is the URL of **your own** project repository (e.
 `https://github.com/USERNAME/project-1-USERNAME.git` if using HTTPS, or
 `git@github.com:USERNAME/project-1-USERNAME.git` if using SSH, where `USERNAME` is your GitHub
 username). You can find this URL by following the
-[Find Your Repository URL](#find-your-repository-url) step above.
 [Find Your Repository URL](/github-repository-setup#find-your-repository-url) step of the
 [Creating Your Project Repository](/github-repository-setup) instructions.
 
@@ -160,32 +90,6 @@ if you need to.
 
 ## Common Issues
 
-### Accidentally Created a Public Repository
-
-- Symptom: you selected `Public` instead of `Private` when creating your repository (or forgot to
-  check the visibility setting).
-- Solution: immediately go to your repository's `Settings` tab, scroll to the bottom `Danger Zone`
-  section, and click `Change visibility` to switch it to `Private`.
-
-### Created the Repository Under the Wrong Owner
-
-- Symptom: you selected the `CSCI-442-Mines` organization (or some other account) as the `Owner`
-  instead of your personal account, and the creation failed or the repository ended up somewhere
-  unexpected.
-- Solution: delete the incorrectly created repository (`Settings > Danger Zone > Delete this
-  repository`) and repeat the [Create a Repository From the Template](#create-a-repository-from-the-template)
-  steps, making sure to select your personal account as the `Owner`.
-
-### Cloned or Forked the Template Instead of Using It
-
-- Symptom: you ran `git clone` directly on the template repository's URL, or used GitHub's `Fork`
-  button instead of `Use this template`, and now your repository is linked to (or a fork of) the
-  shared template repository instead of being an independent copy.
-- Solution: delete the repository you created and repeat the
-  [Create a Repository From the Template](#create-a-repository-from-the-template) steps, making
-  sure to click the green `Use this template` button (**not** `Fork` or the template repository's
-  own `Code` button).
-
 ### Cloning Using HTTPS Instead of SSH
 
 - Symptom: you receive an error message when cloning a repository similar to:
@@ -213,7 +117,6 @@ and the repository exists.
 - Solution: if you are intending on using HTTPS, use the HTTPS URL (e.g.:
   `https://github.com/USERNAME/project-1-USERNAME.git`). If you are intending on using SSH, make
   sure you set up your SSH key correctly by following the instructions in the
-  [Setup Git Inside the Dev Container](/dev-container-setup#setup-git-inside-the-dev-container)
   [Setup Git Inside the Dev Container](/student-environment#setup-git-inside-the-dev-container)
   section.
 
@@ -222,7 +125,6 @@ and the repository exists.
 - Symptom: you can't find the project-specific `*.code-workspace` file (e.g.:
   `project-1.code-workspace`) in VS Code's file explorer.
 - Solution: make sure you have opened the top level of the workspace directory in the dev container
-  (See the [Clone Your Repository](#clone-your-repository) section above for more details).
   (See the instructions above for more details).
 
 ### Missing Debug Configurations/Tools
@@ -234,7 +136,5 @@ and the repository exists.
   open the project-specific `*.code-workspace` file (e.g.: `project-1.code-workspace`) without
   first opening the course dev container (or in different dev container), the debug configurations
   and/or tools will be missing.
-
-_This page created with the help of Claude AI._
 ####
 This page was created with the help of Claude Code

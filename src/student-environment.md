@@ -17,7 +17,7 @@ alike, with all the necessary tools and libraries pre-installed!
 
 ## Setup Instructions
 
-Complete the following steps, in order, to set up your development environment for this course:
+### Install Docker
 
 ::: tip
 If you already have Docker installed and verified it is working (`docker run hello-world`), you can

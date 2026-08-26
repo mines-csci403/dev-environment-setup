@@ -42,5 +42,3 @@ features:
     link: https://github.com/csci-442-mines/project-5-starter
     linkText: Preview Project 5
 ---
-
-_This page created with the help of Claude AI._
