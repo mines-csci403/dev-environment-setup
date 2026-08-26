@@ -1,1 +1,0 @@
-const s="/assets/vscode-open-folder-dropdown.CNlvLPoY.png",o="/assets/vscode-reopen-in-container-popup.D7El6C9K.png",e="/assets/vscode-new-terminal-dropdown.CEi70jW2.png",t="/assets/vscode-integrated-terminal.Dp1xYIAC.png",n="/assets/vscode-clone-first-time.Bu7RqM5U.png";export{s as _,o as a,e as b,t as c,n as d};
