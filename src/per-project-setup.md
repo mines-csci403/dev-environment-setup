@@ -69,6 +69,23 @@ corrupting your source code!
 Now that you've created your repository from the template above, you need to clone it. This will
 create a copy of the starter code and instructions on your local machine. For best results clone
 the repository from inside the dev container using **one** of the following methods:
+This page contains instructions for cloning a project's repository and getting it set up inside
+your dev container. You will need to complete these steps **once per project** in this course,
+after completing the [Student Environment](/student-environment) setup and
+[creating your own repository](/github-repository-setup) from the project's starter template.
+:::
+
+::: warning
+Failure to follow the instructions on this page **exactly** as presented may result in corrupting
+your source code!
+:::
+
+For each project in this course, you will first need to create your own private repository from
+the project's starter template by following the
+[Creating Your Project Repository](/github-repository-setup) instructions. Once you have your
+repository, you will need to clone it. This will create a copy of the starter code and
+instructions on your local machine. For best results clone the repository from inside the dev
+container using **one** of the following methods:
 
 1. (Recommended) Open VS Code, select `File > Open Recent`: ![Open recent dropdown](./student-environment/vscode-open-recent-dropdown.png) and
    then select the `PATH_TO_DIRECTORY/student-env [Dev Container]` (Where `PATH_TO_DIRECTORY` is the
@@ -76,6 +93,7 @@ the repository from inside the dev container using **one** of the following meth
 2. Open VS Code, select `File > Open Folder...`, navigate to the directory where you extracted the
    course dev container, and click on `Reopen in Container` popup (the same way you did for
    [setting up the course dev container](/dev-container-setup)).
+   [setting up the course dev container](/student-environment#setup-the-course-dev-container)).
 
 Now that you've opened the dev container, open the top level of the workspace directory in the dev
 container by selecting `File > Open Folder...`, navigate to the `/workspace/` directory, and click
@@ -101,6 +119,8 @@ Where `PROJECT_REPOSITORY_URL` is the URL of **your own** project repository (e.
 `git@github.com:USERNAME/project-1-USERNAME.git` if using SSH, where `USERNAME` is your GitHub
 username). You can find this URL by following the
 [Find Your Repository URL](#find-your-repository-url) step above.
+[Find Your Repository URL](/github-repository-setup#find-your-repository-url) step of the
+[Creating Your Project Repository](/github-repository-setup) instructions.
 
 Once the repository is cloned, open the project-specific `*.code-workspace` file (e.g.:
 `project-1.code-workspace`) by clicking on it in the file explorer. You should see a popup
@@ -194,6 +214,7 @@ and the repository exists.
   `https://github.com/USERNAME/project-1-USERNAME.git`). If you are intending on using SSH, make
   sure you set up your SSH key correctly by following the instructions in the
   [Setup Git Inside the Dev Container](/dev-container-setup#setup-git-inside-the-dev-container)
+  [Setup Git Inside the Dev Container](/student-environment#setup-git-inside-the-dev-container)
   section.
 
 ### Can't Find The Project-Specific `*.code-workspace` File (e.g.: `project-1.code-workspace`)
@@ -202,6 +223,7 @@ and the repository exists.
   `project-1.code-workspace`) in VS Code's file explorer.
 - Solution: make sure you have opened the top level of the workspace directory in the dev container
   (See the [Clone Your Repository](#clone-your-repository) section above for more details).
+  (See the instructions above for more details).
 
 ### Missing Debug Configurations/Tools
 
@@ -214,3 +236,5 @@ and the repository exists.
   and/or tools will be missing.
 
 _This page created with the help of Claude AI._
+####
+This page was created with the help of Claude Code

@@ -71,6 +71,7 @@ export default defineConfig({
       {link: "/install-docker", text: "Install Docker"},
       {link: "/install-vscode", text: "Install VS Code"},
       {link: "/dev-container-setup", text: "Setup the Course Dev Container"},
+      {link: "/github-repository-setup", text: "Creating Your Project Repository"},
       {link: "/per-project-setup", text: "Per-Project Setup"},
     ],
     outline: {
@@ -95,6 +96,8 @@ export default defineConfig({
       {
         link: "/dev-container-setup",
         text: "Setup the Course Dev Container",
+        link: "/github-repository-setup",
+        text: "Creating Your Project Repository",
       },
       {
         link: "/per-project-setup",
