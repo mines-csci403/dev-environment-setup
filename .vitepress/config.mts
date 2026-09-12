@@ -14,7 +14,7 @@ const __filename = fileURLToPath(import.meta.url),
 
 export default defineConfig({
   cleanUrls: true,
-  description: "CSCI442: Operating Systems at the Colorado School of Mines",
+  description: "CSCI403: Database Management at the Colorado School of Mines",
   dir: join(root, "src"),
   head: [
     [
@@ -62,7 +62,7 @@ export default defineConfig({
         "https://github.com/csci-442-mines/csci-442-mines.github.io/edit/main/src/:path",
     },
     footer: {
-      copyright: "&copy; 2025 Colorado School of Mines",
+      copyright: "&copy; " + new Date().getFullYear() + " Colorado School of Mines",
     },
     lastUpdated: {},
     nav: [
@@ -82,11 +82,7 @@ export default defineConfig({
       },
     ],
     socialLinks: [
-      {
-        icon: "github",
-        link: "https://github.com/csci-442-mines",
-      },
     ],
   },
-  title: "CSCI442: Operating Systems",
+  title: "CSCI403: Database Management",
 });
