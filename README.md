@@ -1,8 +1,6 @@
-# CSCI442: Operating Systems Course Website
+# CSCI403: Database Management Course Website
 
-[![gh-pages](https://github.com/CSCI-442-Mines/CSCI-442-Mines.github.io/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/CSCI-442-Mines/CSCI-442-Mines.github.io/actions/workflows/gh-pages.yml)
-
-This is the course website for CSCI442: Operating Systems at the
+This is the course website for CSCI403: Database Management at the
 [Colorado School of Mines](https://mines.edu).
 
 ## Development Documentation
