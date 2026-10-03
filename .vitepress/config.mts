@@ -10,9 +10,11 @@ import lightbox from "vitepress-plugin-lightbox";
 
 const __filename = fileURLToPath(import.meta.url),
   __dirname = dirname(__filename),
-  root = join(__dirname, "..");
+  root = join(__dirname, ".."),
+  base = "/dev-environment-setup/";
 
 export default defineConfig({
+  base,
   cleanUrls: true,
   description: "CSCI403: Database Management at the Colorado School of Mines",
   dir: join(root, "src"),
@@ -20,7 +22,7 @@ export default defineConfig({
     [
       "link",
       {
-        href: "/logos/mines-reuleaux-light.png",
+        href: `${base}logos/mines-reuleaux-light.png`,
         media: "(prefers-color-scheme: no-preference)",
         rel: "icon",
       },
@@ -28,7 +30,7 @@ export default defineConfig({
     [
       "link",
       {
-        href: "/logos/mines-reuleaux-light.png",
+        href: `${base}logos/mines-reuleaux-light.png`,
         media: "(prefers-color-scheme: light)",
         rel: "icon",
       },
@@ -36,7 +38,7 @@ export default defineConfig({
     [
       "link",
       {
-        href: "/logos/mines-reuleaux-dark.png",
+        href: `${base}logos/mines-reuleaux-dark.png`,
         media: "(prefers-color-scheme: dark)",
         rel: "icon",
       },
@@ -52,14 +54,14 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://csci-442-mines.github.io",
+    hostname: `https://mines-csci403.github.io${base}`,
   },
   srcDir: join(root, "src"),
   themeConfig: {
     aside: true,
     editLink: {
       pattern:
-        "https://github.com/csci-442-mines/csci-442-mines.github.io/edit/main/src/:path",
+        "https://github.com/mines-csci403/dev-environment-setup/edit/main/src/:path",
     },
     footer: {
       copyright: "&copy; " + new Date().getFullYear() + " Colorado School of Mines",

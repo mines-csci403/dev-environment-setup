@@ -1,0 +1,16 @@
+# Retired: this workflow previously uploaded source files directly to Pages.
+# gh-pages.yml now builds VitePress and publishes its output to production.
+# Keep this disabled replacement when updating the existing remote workflow.
+name: Legacy static deployment (disabled)
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  retired:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Deployment is handled by gh-pages.yml."
