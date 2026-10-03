@@ -3,12 +3,14 @@ name: gh-pages
 on:
   push:
     branches:
-      - main # Set a branch to deploy
+      - main # Source branch; generated site is published to production
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
     steps:
       - name: Clone code
         uses: actions/checkout@v6
@@ -28,4 +30,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: production
           publish_dir: ./.vitepress/dist
