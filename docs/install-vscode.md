@@ -1,39 +1,23 @@
 # Install VS Code
 
-::: info
-This page contains instructions for installing Visual Studio Code (VS Code), the code editor we
-recommend for this course.
-:::
+[Download Visual Studio Code](https://code.visualstudio.com/) for your operating
+system and install it. Visual Studio Code and Visual Studio are different products;
+these instructions use **Visual Studio Code**.
 
-::: tip
-If you already have VS Code installed, you can skip this step. Note that Visual Studio and Visual
-Studio <u>Code</u> are different code editors, both made by Microsoft.
-:::
+## Install the Dev Containers extension
 
-We recommend using Visual Studio Code (VS Code) as your code editor for this course. You can
-download it for free from [here](https://code.visualstudio.com/).
+1. Open VS Code and select the **Extensions** icon in the left sidebar.
+2. Search for **Dev Containers**, published by Microsoft
+   (`ms-vscode-remote.remote-containers`).
+3. Click **Install**.
 
-## Install Extensions
+You can also open its [Marketplace page](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
+The extension lets VS Code use the tools installed inside the course container.
+See the [VS Code dev container documentation](https://code.visualstudio.com/docs/devcontainers/containers)
+for more about this workflow.
 
-Once you have installed VS Code, you will need to install the following extensions:
+The course configuration installs Microsoft's Python extension inside the dev
+container and selects `/usr/local/bin/python`. You do not need a separate local
+Python installation for these instructions.
 
-- [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
-::: tip
-If you are not familiar with how to install extensions in VS Code, you can follow
-[these](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-an-extension)
-detailed instructions, but in short, you can click on the extensions icon in the left sidebar:
-
-![Extensions sidebar](./student-environment/vscode-extensions-sidebar.png)
-
-Then, search for the desired extension, click on the Install button, and wait for the installation
-to complete.
-:::
-
-::: tip
-Once you've installed VS Code and the extensions above, head back to the
-[Student Environment](/student-environment) page to continue with setting up the course dev
-container.
-:::
-
-_This page created with the help of Claude AI._
+Next: [Set Up the Course Environment](/dev-container-setup).

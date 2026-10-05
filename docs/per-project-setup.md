@@ -1,216 +1,131 @@
-# Per-Project Setup
+# Working on Assignments
 
-::: info
-This page contains instructions for creating your own personal repository for a project in this
-course, cloning it, and getting it set up inside your dev container. You will need to complete
-these steps **once per project** in this course, after completing the
-[Student Environment](/student-environment) setup.
-:::
+Reuse the [course environment](/dev-container-setup) for SQL and Python work.
+Follow each assignment's instructions for starter files, database objects, and
+submission requirements.
 
-## Setup Instructions
+## Resume your environment
 
-### Create a Repository From the Template
+Start Docker. In VS Code, open the environment folder and run **Dev Containers:
+Reopen in Container**, then select **Terminal → New Terminal**. Keep the environment
+root open so you can access all your assignment folders under `/workspace`.
 
-A template repository is a special kind of GitHub repository that lets you generate a brand new
-repository with the same starter files, folder structure, and history-free commit as the
-template, but under your own account. For each project in this course, course staff provide a
-template repository (e.g.: `project-1-starter`) containing the starter code, instructions, and
-configuration you'll need. Using the template feature ensures you get your own independent,
-private copy to work in, rather than modifying the shared template directly.
+The commands below labeled **container terminal** run inside that VS Code terminal.
+Commands labeled **system terminal** run on your computer from the environment
+folder containing `compose.yaml`.
 
-::: warning
-Make sure you are signed in to [GitHub](https://github.com/) with your own personal account before
-starting these steps.
-:::
+## Organize your files
 
-::: danger
-When you get to the `Visibility` setting below, do **not** select `Public`! Making your repository
-public exposes your work to other students (and the internet), which is an academic integrity
-violation. If you accidentally create a public repository, see the
-[Common Issues](#common-issues) section below to fix it immediately.
-:::
+Create a folder for each assignment inside the environment folder. For example:
 
-1. Navigate to the starter template repository for the project you are starting (e.g.:
-   `https://github.com/CSCI-442-Mines/PROJECT_NAME-starter`, where `PROJECT_NAME` is the name of
-   the project, such as `project-1`).
-2. Click the green `Use this template` button near the top right of the page, then select
-   `Create a new repository` from the dropdown menu.
-3. On the `Create a new repository` page, fill out the following fields:
-   - **Owner**: select your own personal GitHub account (**not** the `CSCI-442-Mines`
-     organization). You will not have permission to create repositories directly under the
-     organization.
-   - **Repository name**: name your repository `PROJECT_NAME-USERNAME`, where `PROJECT_NAME` is
-     the name of the project (e.g.: `project-1`) and `USERNAME` is your GitHub username (e.g.:
-     `ghost`). For example: `project-1-ghost`.
-   - **Visibility**: select `Private`.
-4. Leave the remaining options (such as `Include all branches`) at their default (unchecked)
-   values.
-5. Click the green `Create repository` button and wait for GitHub to finish generating your new
-   repository from the template.
+```text
+your-environment-folder/
+  .devcontainer/
+  .env
+  compose.yaml
+  Dockerfile
+  assignments/
+    assignment-1/
+      queries.sql
+    assignment-2/
+      main.py
+```
 
-### Find Your Repository URL
+Inside the container, `queries.sql` in this example is at
+`/workspace/assignments/assignment-1/queries.sql`. Save and back up your files;
+closing a container does not submit an assignment.
 
-Once your repository has been created, you'll land on its main page. Click the green `Code`
-button, and copy either the HTTPS or SSH URL, depending on which authentication method you set up
-in the [Setup Git Inside the Dev Container](/dev-container-setup#setup-git-inside-the-dev-container)
-section.
+If an assignment requires Git, use Git on your computer and follow that
+assignment's repository instructions. Git is not installed in this container.
 
-::: tip
-Keep this URL handy! You'll use it as `PROJECT_REPOSITORY_URL` when cloning your repository below.
-:::
+## Run SQL
 
-::: warning
-Failure to follow the remaining instructions on this page **exactly** as presented may result in
-corrupting your source code!
-:::
+Create `assignments/assignment-1/queries.sql` with a simple connection check:
 
-### Clone Your Repository
+```sql
+SELECT current_database(), current_user;
+```
 
-Now that you've created your repository from the template above, you need to clone it. This will
-create a copy of the starter code and instructions on your local machine. For best results clone
-the repository from inside the dev container using **one** of the following methods:
-
-1. (Recommended) Open VS Code, select `File > Open Recent`: ![Open recent dropdown](./student-environment/vscode-open-recent-dropdown.png) and
-   then select the `PATH_TO_DIRECTORY/student-env [Dev Container]` (Where `PATH_TO_DIRECTORY` is the
-   actual path to the directory). Note that you **must select the `[Dev Container]` entry**!
-2. Open VS Code, select `File > Open Folder...`, navigate to the directory where you extracted the
-   course dev container, and click on `Reopen in Container` popup (the same way you did for
-   [setting up the course dev container](/dev-container-setup)).
-
-Now that you've opened the dev container, open the top level of the workspace directory in the dev
-container by selecting `File > Open Folder...`, navigate to the `/workspace/` directory, and click
-`Ok`:
-
-![Open folder prompt for the `/workspace/` directory](./student-environment/vscode-open-folder-prompt-workspace.png)
-
-::: warning
-If you skip this step (which must be done each time you set up a new project), you may end up
-cloning repositories inside of each other, which will cause issues when committing and pushing
-changes to GitHub.
-:::
-
-Once VS Code has opened/changed to the `/workspace/` directory, open the integrated terminal, and
-run the following command to clone your project repository:
+Save it, then run it from the **container terminal**:
 
 ```shell
-git clone PROJECT_REPOSITORY_URL
+psql -W -v ON_ERROR_STOP=1 -f /workspace/assignments/assignment-1/queries.sql
 ```
 
-Where `PROJECT_REPOSITORY_URL` is the URL of **your own** project repository (e.g.:
-`https://github.com/USERNAME/project-1-USERNAME.git` if using HTTPS, or
-`git@github.com:USERNAME/project-1-USERNAME.git` if using SSH, where `USERNAME` is your GitHub
-username). You can find this URL by following the
-[Find Your Repository URL](#find-your-repository-url) step above.
+Or from the **system terminal**, using the terminal-only workflow:
 
-Once the repository is cloned, open the project-specific `*.code-workspace` file (e.g.:
-`project-1.code-workspace`) by clicking on it in the file explorer. You should see a popup
-notification, typically on the bottom right of the window, that says `Open Workspace`:
-
-![Open Workspace popup](./student-environment/vscode-open-workspace-popup.png)
-
-Click on `Open Workspace` to open the project-specific workspace (This will change VS Code's working
-directory to the project directory and load the project-specific settings). Once the workspace is
-open, you may get yet another notification asking if you would like to install the recommended
-extensions for the workspace:
-
-![Install recommended extensions popup](./student-environment/vscode-recommended-extensions-popup.png)
-
-Click on `Install` to install the recommended extensions. Alternatively, you can install the
-recommended workspace extensions by pressing `CTRL+SHIFT+P` (or `CMD+SHIFT+P` on Mac) to open the
-command palette:
-
-![Command palette](./student-environment/vscode-command-palette.png)
-
-Then, type `Extensions: Show Recommended Extensions`, and press `Enter`. Then, click on the cloud
-icon with a down arrow to install all recommended extensions:
-
-![Extensions sidebar with recommended extensions](./student-environment/vscode-recommended-extensions-sidebar.png)
-
-Once the extensions are installed, you can now start working on your project! Note that the
-`*.code-workspace` file (e.g.: `project-1.code-workspace`) we provide is pre-configured with
-everything you need for one-click building/debugging. You can find more information on how to use
-the workspace file in the each project's `README.md` file.
-
-::: tip
-As you work on the project, remember to periodically commit and push your changes (e.g.:
-`git add`, `git commit`, and `git push`). Committing and pushing often protects your work in case
-something happens to your dev container, and gives you a history of checkpoints you can go back to
-if you need to.
-:::
-
-## Common Issues
-
-### Accidentally Created a Public Repository
-
-- Symptom: you selected `Public` instead of `Private` when creating your repository (or forgot to
-  check the visibility setting).
-- Solution: immediately go to your repository's `Settings` tab, scroll to the bottom `Danger Zone`
-  section, and click `Change visibility` to switch it to `Private`.
-
-### Created the Repository Under the Wrong Owner
-
-- Symptom: you selected the `CSCI-442-Mines` organization (or some other account) as the `Owner`
-  instead of your personal account, and the creation failed or the repository ended up somewhere
-  unexpected.
-- Solution: delete the incorrectly created repository (`Settings > Danger Zone > Delete this
-  repository`) and repeat the [Create a Repository From the Template](#create-a-repository-from-the-template)
-  steps, making sure to select your personal account as the `Owner`.
-
-### Cloned or Forked the Template Instead of Using It
-
-- Symptom: you ran `git clone` directly on the template repository's URL, or used GitHub's `Fork`
-  button instead of `Use this template`, and now your repository is linked to (or a fork of) the
-  shared template repository instead of being an independent copy.
-- Solution: delete the repository you created and repeat the
-  [Create a Repository From the Template](#create-a-repository-from-the-template) steps, making
-  sure to click the green `Use this template` button (**not** `Fork` or the template repository's
-  own `Code` button).
-
-### Cloning Using HTTPS Instead of SSH
-
-- Symptom: you receive an error message when cloning a repository similar to:
-
-```
-fatal: could not read Username for 'https://github.com': terminal prompts disabled
-remote: Repository not found.
+```shell
+docker compose run --rm psql -W -v ON_ERROR_STOP=1 -f /workspace/assignments/assignment-1/queries.sql
 ```
 
-- Solution: clone using the SSH URL (e.g.: `git@github.com:USERNAME/project-1-USERNAME.git`)
-  instead of the HTTPS URL (e.g.: `https://github.com/USERNAME/project-1-USERNAME.git`).
+`-f` runs the saved file. `ON_ERROR_STOP=1` stops on the first SQL error; it does
+not undo statements that already succeeded. Check your assignment's directions
+before rerunning scripts that create or change data.
 
-### Cloning Using SSH Instead of HTTPS/SSH Key Not Set Up Correctly
+For interactive SQL, run `psql -W` in the container or
+`docker compose run --rm psql -W` from your system terminal. Useful commands at the
+`psql` prompt include:
 
-- Symptom: you receive an error message when cloning a repository similar to:
+| Command                                              | Purpose                                                    |
+| ---------------------------------------------------- | ---------------------------------------------------------- |
+| `\conninfo`                                          | Show the current connection.                               |
+| `\d`                                                 | List tables visible in the current search path.            |
+| `\i /workspace/assignments/assignment-1/queries.sql` | Run a saved SQL file.                                      |
+| `\e`                                                 | Edit the query buffer using the editor selected in `.env`. |
+| `\q`                                                 | Exit to the shell.                                         |
 
+End SQL statements with a semicolon. These backslash commands do not need one.
+See the [psql reference](https://www.postgresql.org/docs/current/app-psql.html)
+for more commands.
+
+## Run Python
+
+Python and `pg8000` are already installed. To check the interpreter and driver,
+create `assignments/assignment-2/main.py` with:
+
+```python
+import pg8000
+
+print("Python and pg8000 are ready")
 ```
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
 
-Please make sure you have the correct access rights
-and the repository exists.
+Run it from the **container terminal**:
+
+```shell
+python /workspace/assignments/assignment-2/main.py
 ```
 
-- Solution: if you are intending on using HTTPS, use the HTTPS URL (e.g.:
-  `https://github.com/USERNAME/project-1-USERNAME.git`). If you are intending on using SSH, make
-  sure you set up your SSH key correctly by following the instructions in the
-  [Setup Git Inside the Dev Container](/dev-container-setup#setup-git-inside-the-dev-container)
-  section.
+Or from the **system terminal**:
 
-### Can't Find The Project-Specific `*.code-workspace` File (e.g.: `project-1.code-workspace`)
+```shell
+docker compose run --rm --entrypoint python psql /workspace/assignments/assignment-2/main.py
+```
 
-- Symptom: you can't find the project-specific `*.code-workspace` file (e.g.:
-  `project-1.code-workspace`) in VS Code's file explorer.
-- Solution: make sure you have opened the top level of the workspace directory in the dev container
-  (See the [Clone Your Repository](#clone-your-repository) section above for more details).
+The example verifies that the driver imports; it does not connect to the database.
+Use the connection code provided for your Python assignment. Compose makes
+`PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, and `PGSSLMODE` available as environment
+variables, but your Python code must explicitly configure its driver connection,
+including SSL and password handling. `psql` connection settings do not automatically
+configure a `pg8000` connection. Do not hard-code your database password in scripts
+or include it in submissions.
 
-### Missing Debug Configurations/Tools
+## Finish a session
 
-- Symptom: the VS Code debug configurations and/or build/debug tools (e.g.: `clang`,
-  `cmake`, `gcc`, `g++`, `make`, etc.) are missing.
-- Solution: double check you have opened the course dev container **first**, and then opened the
-  project-specific `*.code-workspace` file (e.g.: `project-1.code-workspace`) **second**. If you
-  open the project-specific `*.code-workspace` file (e.g.: `project-1.code-workspace`) without
-  first opening the course dev container (or in different dev container), the debug configurations
-  and/or tools will be missing.
+Exit `psql` with `\q`, or a terminal-only shell with `exit`. Closing the VS Code
+dev container window stops its Compose service under the supplied configuration.
+Your files under `/workspace` remain on your computer, and committed database
+changes remain on the remote server.
 
-_This page created with the help of Claude AI._
+## Refresh the tools
+
+Update when course staff request it. The image tracks Python 3 rather than a
+fixed minor version, so rebuilding with fresh dependencies can change versions.
+For the terminal-only workflow, run from your system terminal:
+
+```shell
+docker compose build --pull --no-cache
+```
+
+For VS Code, close the dev container window, run that command in the environment
+folder on your computer, then reopen the folder in VS Code and run **Dev Containers:
+Rebuild Container**. Keep assignment files under `/workspace` before rebuilding.

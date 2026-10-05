@@ -1,5 +1,5 @@
 {
-  "name": "csci-442-mines.github.io",
+  "name": "csci403-dev-environment-setup",
   "private": true,
   "scripts": {
     "dev": "vitepress dev",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CSCI-442-Mines/CSCI-442-Mines.github.io.git"
+    "url": "git+https://github.com/mines-csci403/dev-environment-setup.git"
   },
   "bugs": {
-    "url": "https://github.com/CSCI-442-Mines/CSCI-442-Mines.github.io/issues"
+    "url": "https://github.com/mines-csci403/dev-environment-setup/issues"
   },
-  "homepage": "https://github.com/CSCI-442-Mines/CSCI-442-Mines.github.io#readme",
+  "homepage": "https://mines-csci403.github.io/dev-environment-setup/",
   "dependencies": {
     "markdown-it-mathjax3": "^4.3.2",
     "vitepress": "^1.6.3",

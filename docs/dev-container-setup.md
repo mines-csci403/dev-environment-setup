@@ -1,163 +1,176 @@
-# Setup the Course Dev Container
+# Set Up the Course Environment
 
-::: info
-This page contains instructions for setting up the course dev container and configuring Git
-inside of it. You will set this up **once** and reuse it for every project in this course.
-:::
+Complete this setup once. Start with [Docker](/install-docker) installed and
+running. For the editor workflow, also install [VS Code and Dev Containers](/install-vscode).
 
-::: danger
-Failure to follow the instructions on this page **exactly** as presented may result in
-permanently losing your work for this course! You have been warned!
-:::
+## 1. Download the environment
 
-You will create **a single** dev container, which you will reuse for all projects in this course.
-The structure of your dev container at the **end of this course** will look like:
+1. Open the [CSCI403 student environment v0.1 release](https://github.com/juliustnt/csci403_student_env/releases/tag/v0.1).
+2. Under **Assets**, download the ZIP archive for the release.
+3. Extract the archive to a folder you will keep for the course.
+4. In VS Code, select **File → Open Folder** and open the extracted folder
+   containing `Dockerfile` and `compose.yaml`.
+   by the ZIP extraction.
 
-- `/workspace/`: This is the directory of the dev container which is shared with your host machine.
-  **Any data outside of this directory will not be saved when the container is stopped.**
-  - `.devcontainer/`: This directory contains the configuration for the dev container itself. Do not
-    modify this directory.
-  - `scripts/`: This directory contains miscellaneous scripts for the course. A course staff member
-    will provide instructions on how to use these utilities, if necessary.
-  - `README.md`: This is the file you are currently reading. This file contains helpful reminders
-    and instructions for using the dev container.
-  - `SEMESTER-project-1-USERNAME/`: This is your personal project 1 repository, where `SEMESTER` is
-    the current semester (e.g.: `sp25`) and `USERNAME` is your GitHub username (e.g.: `ghost`). It
-    will be created for you when you accept the GitHub Classroom assignment for project 1
-    (in Canvas).
-  - `SEMESTER-project-2-USERNAME/`: Same as above, but for project 2.
-  - `SEMESTER-project-3-USERNAME/`: Same as above, but for project 3.
-  - `SEMESTER-project-4-USERNAME/`: Same as above, but for project 4.
-  - `SEMESTER-project-5-USERNAME/`: Same as above, but for project 5.
+The environment folder contains:
 
-To set up the course dev container, first download [this](https://github.com/csci-442-mines/student-env/releases/latest/download/student-env.zip)
-file and extract it to a directory of your choice (Somewhere that is easy to access and safe from
-accidental deletion). Then, open the top level of extracted directory in VS Code by any **one** of
-the following methods:
-
-_Note: when we refer to the **<u>system</u> terminal** below, we mean your operating system's
-terminal, as described on the [Install Docker](/install-docker) page._
-
-1. (Recommended) Open VS Code and select `File > Open Folder...`: ![Open folder dropdown](./student-environment/vscode-open-folder-dropdown.png)
-   Then, navigate to the directory where you extracted the course dev container. You should see VS
-   Code switch to the directory you selected.
-2. Right-click on the directory and select `Open with Code`. You should see VS Code open with the
-   directory loaded in the window. Note that this option may not be available on all systems.
-3. Run `code PATH_TO_DIRECTORY` in your system's terminal (Where `PATH_TO_DIRECTORY` is the actual
-   path to the directory). You should see VS Code open with the directory loaded in the window.
-
-Now that you have the directory open in VS Code, you should see a popup notification, typically on
-the bottom right of the window, that says `Reopen in Container`:
-
-![Reopen in Container popup](./student-environment/vscode-reopen-in-container-popup.png)
-
-Click on `Reopen in Container` to build the dev container (which can take a few minutes). Once the
-container is built, the loading bars will disappear. Open the **<u>integrated</u>** terminal (Not
-the <u>system</u> terminal) by selecting `Terminal > New Terminal` from the top menu:
-
-![New terminal dropdown](./student-environment/vscode-new-terminal-dropdown.png)
-
-You should see a terminal window open at the bottom of the window:
-
-![Integrated terminal](./student-environment/vscode-integrated-terminal.png)
-
-In the integrated terminal, run the following command to verify that the dev container is correctly
-set up to save your work:
-
-```shell
-touch /workspace/hello-world.txt
+```text
+.devcontainer/       VS Code container configuration
+.env.example         Example database settings
+compose.yaml         Container build, settings, and workspace mount
+Dockerfile           Python, PostgreSQL client, and other tools
+README.md            Quick command reference
 ```
 
-If you navigate to the directory where you extracted the course dev container in your system's file
-explorer/viewer, you should see a new file named `hello-world.txt`. If you do not see this file,
-please double-check you've followed the instructions above and try again. If you still have issues,
-please stop immediately and reach out to the course staff for help.
+Files beginning with a dot may be hidden in your system's file browser; VS Code's
+Explorer shows them.
 
-::: warning
-Do not proceed past this point until you have verified that the dev container is correctly set up to
-save your work!
-:::
+## 2. Configure your database connection
 
-## Setup Git Inside the Dev Container
+Before opening the container, copy `.env.example` to a new file named `.env` in
+the **same folder as `compose.yaml`**. You can copy and paste the file in VS Code's
+Explorer and rename the copy to `.env`. Make sure it is not named `.env.txt`.
 
-First, configure Git with your name and email address by running the following commands in the
-integrated terminal:
+Alternatively, from a system terminal in the environment folder:
 
-```shell
-git config --global user.name "YOUR_NAME"
-git config --global user.email "YOUR_EMAIL"
+::: code-group
+
+```powershell [Windows PowerShell]
+Copy-Item .env.example .env
 ```
 
-Where `YOUR_NAME` is your GitHub username (e.g.: `ghost`) and `YOUR_EMAIL` is the email address
-(e.g.: `ghost@example.com`).
+```shell [macOS / Linux]
+cp .env.example .env
+```
 
-Now, let's set up authentication with GitHub. You can use any **one** of the following methods:
-
-1. (Recommended) Clone a private repository from GitHub for the first time **using HTTPS**. When you
-   clone a private repository **using HTTPS** for the first time, you will be prompted to
-   authenticate with GitHub:
-
-   ![Clone first time](./student-environment/vscode-clone-first-time.png)
-
-   Click `Allow`, and follow the prompts to sign in with your GitHub account. Note that if
-   you do not use the HTTPS URL, you will get an error message when cloning the repository.
-
-2. Manually setup SSH keys. You can follow the detailed instructions [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account),
-   but in short, generate new SSH keypair by running the below commands in the integrated terminal:
-
-   ```shell
-   ssh-keygen -a 100 -t ed25519 -N "" -f ~/.ssh/id_ed25519
-   ```
-
-   Then, get the public key with:
-
-   ```shell
-   cat ~/.ssh/id_ed25519.pub
-   ```
-
-   Finally, go to your [GitHub SSH keys settings](https://github.com/settings/keys), click
-   `New SSH key` (**Not** `New GPG key`), give a descriptive title, set the key type to
-   `Authentication key`, copy-paste the public key into the key field, and click `Add SSH key`.
-
-::: tip
-Once you've completed the setup instructions above, head over to the
-[Per-Project Setup](/per-project-setup) page for instructions on creating and cloning a repository
-for each project in this course.
 :::
 
-## Common Issues
+Edit `.env`. The supplied example contains these settings:
 
-### VS Code Takes a Very Long Time to Build the Dev Container/Fails to Build the Dev Container
+```dotenv
+PGHOST=ada.mines.edu
+PGPORT=5432
+PGDATABASE=csci403
+PGUSER=your-username
+PGSSLMODE=require
+EDITOR=vi
+```
 
-- Symptom: building the dev container takes a very long time (e.g.: 20+ minutes) or VS Code fails to
-  build the dev container with an error message related to Docker.
-- Solution: this can happen if you have a slow/dysfunctional internet connection or computer. To
-  workaround this, we provide a pre-built dev container image
-  (`ghcr.io/csci-442-mines/student-env`). To use it, edit the `.devcontainer/devcontainer.json` like
-  so:
+Replace `your-username` with your assigned **database username**. Confirm the host,
+port, and database against the details provided by course staff and change them
+if instructed. Keep `PGSSLMODE=require` unless course staff specify otherwise.
+You may set `EDITOR=nano` if you prefer nano to vi.
 
-  ```diff
-  // Use the prebuilt image (Mutually exclusive with "build"!):
-  - // "image": "ghcr.io/csci-442-mines/student-env:latest",
-  + "image": "ghcr.io/csci-442-mines/student-env:latest",
+Save the file. Compose passes these settings into the container. The supplied
+configuration does not pass a password from `.env`; the commands below prompt
+for your database password. Your database credentials may differ from your other
+school or GitHub credentials. Keep `.env` private; the environment repository
+already excludes it from Git.
 
-  // Build the image yourself (Mutually exclusive with "image"!):
-  - "build": {
-  -   "dockerfile": "Dockerfile",
-  -   "context": ".."
-  - },
-  + // "build": {
-  + //   "dockerfile": "Dockerfile",
-  + //   "context": ".."
-  + // },
-  ```
+## 3. Open in the dev container
 
-  _Note: the `+` and `-` symbols are non-literal and are used to indicate lines that should be added
-  and removed, respectively. If you don't already have an `image` line, you can just add the `image`
-  line like above and comment out the `build` section._
+1. Open the environment folder in VS Code and keep Docker running.
+2. Open the Command Palette with **Ctrl+Shift+P** (Windows/Linux) or
+   **Cmd+Shift+P** (macOS).
+3. Run **Dev Containers: Reopen in Container**. The first build downloads the base
+   image and installs the course tools, so it can take several minutes.
+4. Once connected, select **Terminal → New Terminal**.
 
-  Then, rebuild the dev container by clicking on the green `Reopen in Container` button in the
-  bottom right corner of the window or by opening the command palette (`CTRL+SHIFT+P` or
-  `CMD+SHIFT+P` on Mac) and typing `Dev Containers: Rebuild Container`.
+This is the **container terminal**. Run the following commands there:
 
-_This page created with the help of Claude AI._
+```shell
+pwd
+psql --version
+python --version
+python -c "import pg8000, dotenv; print('Python database libraries are ready')"
+touch /workspace/setup-check.txt
+```
+
+`pwd` should print `/workspace`, the version commands should print installed
+versions, and the import check should print its success message. Confirm that
+`setup-check.txt` also appears in the environment folder on your computer. This
+checks that your files are saved outside the container. You can delete the check
+file afterward.
+
+## 4. Test your database connection
+
+In the **container terminal**, run:
+
+```shell
+psql -W
+```
+
+Enter your assigned database password when prompted. It is normal for nothing to
+appear as you type. At the `psql` prompt, run:
+
+```sql
+SELECT current_database(), current_user;
+```
+
+Confirm the result shows your assigned database and username. Then exit back to
+the shell:
+
+```text
+\q
+```
+
+You are ready to follow [Working on Assignments](/per-project-setup).
+
+## Terminal-only option
+
+Complete steps 1 and 2 above using your preferred editor. From your **system
+terminal**, change to the environment folder containing `compose.yaml` and run:
+
+```shell
+docker compose build --pull
+docker compose run --rm psql -W
+```
+
+Run the connection check in step 4 and use `\q` to exit. The service is named
+`psql`, and its default entrypoint launches the PostgreSQL client. To open a Linux
+shell instead:
+
+```shell
+docker compose run --rm --entrypoint bash psql
+```
+
+In that shell, run the tool and file checks from step 3. Type `exit` to leave it.
+`--rm` removes the temporary container after it exits; files in `/workspace`
+remain in your environment folder on your computer.
+
+## Troubleshooting
+
+### Container will not build or start
+
+Check `docker run --rm hello-world` and `docker compose version` in your system
+terminal. Make sure Docker is running and your internet connection can download
+images and packages. In VS Code, use **Dev Containers: Show Container Log** to
+inspect the failure. Share the error with course staff if it persists, without
+including credentials.
+
+### Reopen in Container is missing
+
+Check that the Dev Containers extension is installed and that you opened the
+folder containing `.devcontainer` and `compose.yaml`. Use the Command Palette
+command even if no popup appears.
+
+### Connection fails
+
+- **Host name cannot be resolved or connection times out:** Check `PGHOST` and
+  `PGPORT` in `.env` and your network connection. Follow any course-provided
+  campus-network or VPN requirements for the database server.
+- **Password authentication failed:** Check `PGUSER` and your assigned database
+  password. Contact course staff if you have not received credentials.
+- **Database does not exist:** Check `PGDATABASE` against the course instructions.
+- **Connection attempts a local socket:** Check that `.env` exists beside
+  `compose.yaml` and contains a nonempty `PGHOST`.
+
+After changing `.env`, run **Dev Containers: Rebuild Container** in VS Code so the
+container receives the updated settings. With the terminal-only workflow, exit
+the current session and run a new `docker compose run` command.
+
+### Files do not appear on your computer
+
+Run `pwd` in the container and save files under `/workspace`. Check the original
+extracted environment folder on your computer. Resolve the mount issue before
+working on assignments; ask course staff if the file check still fails.

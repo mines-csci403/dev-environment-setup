@@ -1,63 +1,41 @@
 # Install Docker
 
-::: info
-This page contains instructions for installing Docker, which is required to run the dev containers
-used in this course.
-:::
+Docker and Docker Compose are required for both the VS Code and terminal-only
+workflows. If both verification commands below already work, continue to the
+next step.
 
-::: tip
-If you already have Docker installed and verified it is working (`docker run hello-world`), you can
-skip this step.
-:::
+## Install for your operating system
 
-First, you will need to install Docker on your computer. Follow the instructions for your operating
-system below:
+- **Windows:** Install [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/).
+  Follow its WSL 2 setup instructions and use Linux containers for this environment.
+- **macOS:** Install [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/).
+  Choose the download matching your Mac's Apple silicon or Intel processor.
+- **Linux:** Install [Docker Engine](https://docs.docker.com/engine/install/)
+  and the [Docker Compose plugin](https://docs.docker.com/compose/install/linux/).
+  Follow the [Linux post-installation instructions](https://docs.docker.com/engine/install/linux-postinstall/)
+  to configure Docker access for your account. Membership in the `docker` group
+  grants root-level privileges; review those instructions before adding yourself.
 
-- **Windows**: [Docker Desktop for Windows](https://docs.docker.com/docker-for-windows/install/)
-  - We recommend using the WSL 2 backend for Docker Desktop on Windows.
-- **Mac**: [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/install/)
-- **Linux**: [Docker Engine for Linux](https://docs.docker.com/engine/install/)
-  - We strongly **do not recommend** using the Docker snap package nor the Docker Desktop
-    application on Linux.
-  - Make sure to also complete the [post-installation steps for Linux](https://docs.docker.com/engine/install/linux-postinstall/).
+On Windows and macOS, start Docker Desktop and wait until its engine is running.
+Keep it running while using the course environment. Docker Desktop includes Compose.
 
-::: warning
-If you are running Docker Engine on Linux, because the [Docker daemon runs as root by default](https://docs.docker.com/engine/security/rootless/),
-you can cause damage to your system if you run commands in the dev container as root (i.e.: with
-`sudo`) carelessly. As always, practice safe computing and only run commands you understand.
-:::
+## Verify the installation
 
-Once this is complete, please open your system's terminal for your operating system below:
-
-- **Windows**: Open CMD or PowerShell
-  - Do not use Git Bash, WSL, Cygwin, MinGW, or any other terminal emulator.
-- **Mac**: Open Terminal
-- **Linux**: Open Terminal
-
-_Note: when we refer to the **<u>system</u> terminal** in these instructions, we mean the terminal
-for your operating system as described above._
-
-Then, run the following command to verify that Docker is installed correctly:
+Open your **system terminal**: PowerShell on Windows, or Terminal on macOS/Linux.
+Run these commands there, outside a container:
 
 ```shell
-docker run hello-world
+docker run --rm hello-world
+docker compose version
 ```
 
-You should see a message that says:
+The first command should print `Hello from Docker!`. The second should print a
+Docker Compose version. This tutorial uses `docker compose` (with a space).
 
-```
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-...
-```
+If Docker cannot connect to its daemon, check that Docker Desktop or the Linux
+Docker service is running. If `compose` is not recognized on Linux, install the
+Compose plugin linked above. Reopen your terminal after installation if the
+`docker` command is not found.
 
-If you see this message, Docker is installed correctly and you can proceed to the next step. If you
-encounter any issues, please double-check you've read everything above and try again. If you still
-have issues, please reach out to the course staff for help.
-
-::: tip
-Next, head over to the [Install VS Code](/install-vscode) page for instructions on installing your
-code editor.
-:::
-
-_This page created with the help of Claude AI._
+Next: [Install VS Code](/install-vscode), or go to
+[environment setup](/dev-container-setup) if you plan to use your own editor.

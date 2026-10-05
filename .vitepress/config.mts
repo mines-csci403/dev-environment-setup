@@ -63,7 +63,8 @@ export default defineConfig({
         "https://github.com/mines-csci403/dev-environment-setup/edit/production/docs/:path",
     },
     footer: {
-      copyright: "&copy; " + new Date().getFullYear() + " Colorado School of Mines",
+      copyright:
+        "&copy; " + new Date().getFullYear() + " Colorado School of Mines",
     },
     lastUpdated: {},
     nav: [
@@ -71,8 +72,8 @@ export default defineConfig({
       {link: "/student-environment", text: "Student Environment"},
       {link: "/install-docker", text: "Install Docker"},
       {link: "/install-vscode", text: "Install VS Code"},
-      {link: "/dev-container-setup", text: "Setup the Course Dev Container"},
-      {link: "/per-project-setup", text: "Per-Project Setup"},
+      {link: "/dev-container-setup", text: "Set Up the Course Environment"},
+      {link: "/per-project-setup", text: "Working on Assignments"},
     ],
     outline: {
       level: [1, 3],
@@ -95,15 +96,14 @@ export default defineConfig({
       },
       {
         link: "/dev-container-setup",
-        text: "Setup the Course Dev Container",
+        text: "Set Up the Course Environment",
       },
       {
         link: "/per-project-setup",
-        text: "Per-Project Setup",
+        text: "Working on Assignments",
       },
     ],
-    socialLinks: [
-    ],
+    socialLinks: [],
   },
   title: "CSCI403: Database Management",
 });
