@@ -56,16 +56,12 @@ PGSSLMODE=require
 EDITOR=vi
 ```
 
-Replace `your-username` with your assigned **database username**. Confirm the host,
-port, and database against the details provided by course staff and change them
-if instructed. Keep `PGSSLMODE=require` unless course staff specify otherwise.
+Replace `your-username` with your **database username** like `your-username`@mines.edu (excluding mines.edu). Confirm the host,
+port, and database against the details provided.
 You may set `EDITOR=nano` if you prefer nano to vi.
 
-Save the file. Compose passes these settings into the container. The supplied
-configuration does not pass a password from `.env`; the commands below prompt
-for your database password. Your database credentials may differ from your other
-school or GitHub credentials. Keep `.env` private; the environment repository
-already excludes it from Git.
+Save the file. Compose passes these settings into the container. The commands below prompt
+for your database password. Keep `.env` private.
 
 ## 3. Open in the dev container
 
@@ -145,8 +141,7 @@ remain in your environment folder on your computer.
 Check `docker run --rm hello-world` and `docker compose version` in your system
 terminal. Make sure Docker is running and your internet connection can download
 images and packages. In VS Code, use **Dev Containers: Show Container Log** to
-inspect the failure. Share the error with course staff if it persists, without
-including credentials.
+inspect the failure. Share the error if it persists with instructors
 
 ### Reopen in Container is missing
 
@@ -157,11 +152,8 @@ command even if no popup appears.
 ### Connection fails
 
 - **Host name cannot be resolved or connection times out:** Check `PGHOST` and
-  `PGPORT` in `.env` and your network connection. Follow any course-provided
-  campus-network or VPN requirements for the database server.
-- **Password authentication failed:** Check `PGUSER` and your assigned database
-  password. Contact course staff if you have not received credentials.
-- **Database does not exist:** Check `PGDATABASE` against the course instructions.
+  `PGPORT` in `.env` and your network connection. You may choose to connect through the
+  [VPN](https://helpcenter.mines.edu/TDClient/1946/Portal/KB/Article/154280/How-to-Connect-to-Global-Protect-VPN-using-an-Unmanaged-or-Personal-Computer) if needed.
 - **Connection attempts a local socket:** Check that `.env` exists beside
   `compose.yaml` and contains a nonempty `PGHOST`.
 
