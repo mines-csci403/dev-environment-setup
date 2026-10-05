@@ -17,7 +17,6 @@ export default defineConfig({
   base,
   cleanUrls: true,
   description: "CSCI403: Database Management at the Colorado School of Mines",
-  dir: join(root, "src"),
   head: [
     [
       "link",
@@ -56,12 +55,12 @@ export default defineConfig({
   sitemap: {
     hostname: `https://mines-csci403.github.io${base}`,
   },
-  srcDir: join(root, "src"),
+  srcDir: join(root, "docs"),
   themeConfig: {
     aside: true,
     editLink: {
       pattern:
-        "https://github.com/mines-csci403/dev-environment-setup/edit/main/src/:path",
+        "https://github.com/mines-csci403/dev-environment-setup/edit/production/docs/:path",
     },
     footer: {
       copyright: "&copy; " + new Date().getFullYear() + " Colorado School of Mines",
